@@ -529,6 +529,7 @@ function setupTilt() {
   if (!card || reduceMotion) {
     return;
   }
+  const glare = card.querySelector(".arch-glare");
   let targetX = 0;
   let targetY = 0;
   let currentX = 0;
@@ -563,8 +564,7 @@ function setupTilt() {
     currentX += (targetX - currentX) * 0.08;
     currentY += (targetY - currentY) * 0.08;
     card.style.transform = `rotateY(${currentX * 14}deg) rotateX(${-currentY * 12}deg) translateZ(0)`;
-    card.style.setProperty("--gx", `${50 + currentX * 40}%`);
-    card.style.setProperty("--gy", `${30 + currentY * 30}%`);
+    glare.style.transform = `translate3d(${currentX * 20}%, ${-10 + currentY * 15}%, 0)`;
   }
 
   requestAnimationFrame(frame);
