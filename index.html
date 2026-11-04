@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamza &amp; Anaya · 12.12.2026</title>
+<meta name="description" content="With the blessings of Allah, you are invited to the wedding of Hamza and Anaya. Lahore, December 2026.">
+<meta property="og:title" content="Hamza &amp; Anaya · You are invited">
+<meta property="og:description" content="Mehndi · Barat · Walima — Lahore, 10–13 December 2026">
+<meta property="og:image" content="https://chhassaniqbal.github.io/wedding-invite/images/og.jpg">
+<meta property="og:url" content="https://chhassaniqbal.github.io/wedding-invite/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E0A0C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236E1426'/%3E%3Ctext x='32' y='42' font-size='26' text-anchor='middle' fill='%23F1DDA0' font-family='Georgia'%3EH%26A%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Imperial+Script&family=Noto+Nastaliq+Urdu:wght@500&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+</script>
+</head>
+<body class="locked">
+
+<div id="gate" aria-label="Invitation envelope">
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="gate-arch" aria-hidden="true"></div>
+  <div class="gate-inner">
+    <p class="gate-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ</p>
+    <p class="gate-kicker">You are cordially invited</p>
+    <div class="scene3d" id="scene3d">
+      <div class="envelope" id="envelope">
+        <div class="env-back velvet"></div>
+        <div class="letter" id="letter">
+          <span class="letter-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
+          <span class="letter-mono">Hamza <i>&amp;</i> Anaya</span>
+          <span class="letter-line">12 · XII · 2026</span>
+        </div>
+        <div class="env-pocket velvet">
+          <div class="pocket-lines"></div>
+          <div class="pocket-to"><small>Kindly delivered to</small><span id="guestName">Our Honoured Guest</span></div>
+        </div>
+        <div class="env-flap" id="flap">
+          <div class="flap-face velvet"></div>
+          <div class="flap-liner"></div>
+        </div>
+        <button class="seal" id="seal" type="button" aria-label="Break the seal and open the invitation">
+          <span class="seal-half l"><span class="seal-body"><svg class="seal-star" viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="9" width="22" height="22"/><rect x="9" y="9" width="22" height="22" transform="rotate(45 20 20)"/></svg><span class="seal-mono">H<i>&amp;</i>A</span></span></span>
+          <span class="seal-half r" aria-hidden="true"><span class="seal-body"><svg class="seal-star" viewBox="0 0 40 40"><rect x="9" y="9" width="22" height="22"/><rect x="9" y="9" width="22" height="22" transform="rotate(45 20 20)"/></svg><span class="seal-mono">H<i>&amp;</i>A</span></span></span>
+        </button>
+      </div>
+      <div class="env-shadow" aria-hidden="true"></div>
+    </div>
+    <p class="gate-hint"><span class="pulse"></span><span>Touch the seal to open</span></p>
+    <p class="gate-sound">Sound on for the full experience</p>
+  </div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+</div>
+
+<div class="controls" aria-label="Page controls">
+  <button id="musicBtn" class="ctl" type="button" aria-pressed="false" aria-label="Play music">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+    <span class="eq"><i></i><i></i><i></i></span>
+  </button>
+  <button id="langBtn" class="ctl ctl-text" type="button" aria-label="Switch language">اردو</button>
+</div>
+
+<main id="site">
+
+  <section class="hero" id="top">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="hero-veil"></div>
+    <div class="hero-arch" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="hero-ur" lang="ur" dir="rtl">دعوتِ شادی</p>
+      <p class="kicker" data-ur="شادی کی تقریب">The wedding celebration of</p>
+      <h1 class="names">
+        <span class="foil name-a">Hamza</span>
+        <span class="amp">&amp;</span>
+        <span class="foil name-b">Anaya</span>
+      </h1>
+      <p class="names-ur" lang="ur" dir="rtl">حمزہ و عنایہ</p>
+      <div class="hero-date">
+        <span>Mehndi · Barat · Walima</span>
+        <b>10 — 13 December 2026</b>
+      </div>
+      <p class="hero-city">Lahore · Pakistan</p>
+    </div>
+    <a class="scroll-cue" href="#invite" aria-label="Scroll to the invitation"><span></span></a>
+  </section>
+
+  <section class="invite pearl" id="invite">
+    <div class="wrap">
+      <p class="bismillah reveal" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      <p class="ayah reveal">“And among His signs is that He created for you spouses from among yourselves, that you may find tranquillity in them; and He placed between you affection and mercy.”<span>Ar-Rum 30:21</span></p>
+
+      <div class="ornament reveal" aria-hidden="true"><i></i><b></b><i></i></div>
+
+      <div class="tilt-stage reveal">
+        <figure class="arch tilt" id="tiltCard">
+          <img src="images/couple3.jpg" alt="The couple in wedding dress outside a white arched pavilion" loading="lazy">
+          <span class="arch-glare"></span>
+          <span class="arch-frame"></span>
+        </figure>
+      </div>
+
+      <div class="hosts reveal">
+        <p data-ur="اللہ تعالیٰ کے فضل و کرم سے">With the blessings of Allah Almighty</p>
+        <p class="host-name">Mr. &amp; Mrs. Tariq Mahmood</p>
+        <p data-ur="اپنے صاحبزادے کی شادی میں آپ کی شرکت کے متمنی ہیں">request the honour of your presence at the wedding of their son</p>
+        <p class="script-name foil-ink">Hamza Tariq</p>
+        <p class="with">with</p>
+        <p class="script-name foil-ink">Anaya Siddiqui</p>
+        <p data-ur="دختر جناب و بیگم عمران صدیقی">daughter of <b>Mr. &amp; Mrs. Imran Siddiqui</b></p>
+      </div>
+
+      <div class="dateblock reveal">
+        <span class="db-side">Saturday</span>
+        <span class="db-day">12</span>
+        <span class="db-side">December<br>2026</span>
+      </div>
+      <p class="hijri reveal">Rajab 1448 AH · The Barat</p>
+    </div>
+  </section>
+
+  <section class="countdown night" id="countdown">
+    <div class="wrap">
+      <p class="eyebrow reveal" data-ur="بارات میں باقی وقت">Counting down to the Barat</p>
+      <div class="flipclock reveal" id="clock">
+        <div class="unit"><div class="flip" data-unit="d"><span>00</span></div><small>Days</small></div>
+        <div class="unit"><div class="flip" data-unit="h"><span>00</span></div><small>Hours</small></div>
+        <div class="unit"><div class="flip" data-unit="m"><span>00</span></div><small>Minutes</small></div>
+        <div class="unit"><div class="flip" data-unit="s"><span>00</span></div><small>Seconds</small></div>
+      </div>
+      <button class="btn-ghost reveal" type="button" data-ics="barat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+        <span data-ur="تاریخ محفوظ کریں">Save the date</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="gallery pearl" id="gallery">
+    <div class="wrap">
+      <p class="eyebrow dark reveal" data-ur="ہماری کہانی">Our story</p>
+      <h2 class="section-title reveal">Moments, <em>forever</em></h2>
+    </div>
+    <div class="carousel-stage" id="carouselStage">
+      <div class="carousel" id="carousel">
+        <figure><img src="images/couple1.jpg" alt="Couple portrait among trees at golden hour" loading="lazy"></figure>
+        <figure><img src="images/bride1.jpg" alt="Bride in a red and gold lehenga" loading="lazy"></figure>
+        <figure><img src="images/couple2.jpg" alt="Couple holding hands by a marble terrace" loading="lazy"></figure>
+        <figure><img src="images/rings.jpg" alt="Hands with henna and a gold ring" loading="lazy"></figure>
+        <figure><img src="images/bride2.jpg" alt="Bride with traditional jewellery" loading="lazy"></figure>
+        <figure><img src="images/bride3.jpg" alt="Bride in a blue and gold outfit" loading="lazy"></figure>
+        <figure><img src="images/henna.jpg" alt="Hands decorated with henna" loading="lazy"></figure>
+        <figure><img src="images/couple3.jpg" alt="Couple in front of a white arched pavilion" loading="lazy"></figure>
+      </div>
+    </div>
+    <p class="drag-hint reveal">Drag or swipe to turn</p>
+  </section>
+
+  <section class="events night" id="events">
+    <div class="wrap">
+      <p class="eyebrow reveal" data-ur="تین شامیں">Three evenings</p>
+      <h2 class="section-title light reveal">The <em>Celebrations</em></h2>
+      <p class="tap-hint reveal">Tap a card to see the details</p>
+
+      <div class="event-list">
+        <article class="ev reveal" data-flip>
+          <div class="ev-inner">
+            <div class="ev-face ev-front">
+              <img src="images/henna.jpg" alt="" loading="lazy">
+              <div class="ev-shade"></div>
+              <div class="ev-title">
+                <span class="ev-ur" lang="ur" dir="rtl">مہندی</span>
+                <h3>Mehndi</h3>
+                <p>Thursday · 10 December</p>
+              </div>
+              <span class="ev-turn" aria-hidden="true">↻</span>
+            </div>
+            <div class="ev-face ev-back">
+              <h3>Mehndi</h3>
+              <ul class="timeline">
+                <li><b>7:00 PM</b><span>Dholki &amp; welcome</span></li>
+                <li><b>8:30 PM</b><span>Mehndi rasm</span></li>
+                <li><b>10:00 PM</b><span>Dinner</span></li>
+              </ul>
+              <p class="ev-place">Siddiqui residence, Garden Town, Lahore</p>
+              <div class="dress"><span class="sw" style="--c:#E9B949"></span><span class="sw" style="--c:#2F6E4A"></span><span class="sw" style="--c:#E07A2F"></span><em>Yellow, green, marigold</em></div>
+              <div class="ev-actions">
+                <a class="btn-sm" href="https://maps.google.com/?q=Garden+Town+Lahore" target="_blank" rel="noopener">Directions</a>
+                <button class="btn-sm line" type="button" data-ics="mehndi">Add to calendar</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ev featured reveal" data-flip>
+          <div class="ev-inner">
+            <div class="ev-face ev-front">
+              <img src="images/couple1.jpg" alt="" loading="lazy">
+              <div class="ev-shade"></div>
+              <div class="ev-title">
+                <span class="ev-ur" lang="ur" dir="rtl">بارات و نکاح</span>
+                <h3>Barat &amp; Nikah</h3>
+                <p>Saturday · 12 December</p>
+              </div>
+              <span class="ev-turn" aria-hidden="true">↻</span>
+            </div>
+            <div class="ev-face ev-back">
+              <h3>Barat &amp; Nikah</h3>
+              <ul class="timeline">
+                <li><b>7:30 PM</b><span>Barat arrives</span></li>
+                <li><b>8:15 PM</b><span>Nikah</span></li>
+                <li><b>9:30 PM</b><span>Dinner</span></li>
+                <li><b>11:00 PM</b><span>Rukhsati</span></li>
+              </ul>
+              <p class="ev-place">The Grand Pavilion, DHA Phase 6, Lahore</p>
+              <div class="dress"><span class="sw" style="--c:#6E1426"></span><span class="sw" style="--c:#C9A45C"></span><span class="sw" style="--c:#151012"></span><em>Formal · deep tones</em></div>
+              <div class="ev-actions">
+                <a class="btn-sm" href="https://maps.google.com/?q=DHA+Phase+6+Lahore" target="_blank" rel="noopener">Directions</a>
+                <button class="btn-sm line" type="button" data-ics="barat">Add to calendar</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ev reveal" data-flip>
+          <div class="ev-inner">
+            <div class="ev-face ev-front">
+              <img src="images/couple2.jpg" alt="" loading="lazy">
+              <div class="ev-shade"></div>
+              <div class="ev-title">
+                <span class="ev-ur" lang="ur" dir="rtl">ولیمہ</span>
+                <h3>Walima</h3>
+                <p>Sunday · 13 December</p>
+              </div>
+              <span class="ev-turn" aria-hidden="true">↻</span>
+            </div>
+            <div class="ev-face ev-back">
+              <h3>Walima</h3>
+              <ul class="timeline">
+                <li><b>8:00 PM</b><span>Reception</span></li>
+                <li><b>9:30 PM</b><span>Dinner</span></li>
+              </ul>
+              <p class="ev-place">The Grand Pavilion, DHA Phase 6, Lahore</p>
+              <div class="dress"><span class="sw" style="--c:#F4ECDF"></span><span class="sw" style="--c:#BFD6C8"></span><span class="sw" style="--c:#DDB7BB"></span><em>Pastels &amp; ivory</em></div>
+              <div class="ev-actions">
+                <a class="btn-sm" href="https://maps.google.com/?q=DHA+Phase+6+Lahore" target="_blank" rel="noopener">Directions</a>
+                <button class="btn-sm line" type="button" data-ics="walima">Add to calendar</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="venue pearl" id="venue">
+    <div class="wrap">
+      <p class="eyebrow dark reveal" data-ur="مقام">The venue</p>
+      <h2 class="section-title reveal">The Grand <em>Pavilion</em></h2>
+      <div class="venue-card reveal">
+        <div class="venue-photo"><img src="images/couple2.jpg" alt="Marble terrace at the venue" loading="lazy"></div>
+        <div class="venue-info">
+          <p>Main Boulevard, DHA Phase 6, Lahore</p>
+          <p class="muted">Valet parking at Gate 2 · Separate seating for ladies</p>
+          <div class="ev-actions">
+            <a class="btn" href="https://maps.google.com/?q=DHA+Phase+6+Lahore" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8z"/></svg>Get directions
+            </a>
+            <button class="btn line" type="button" id="shareBtn">Share invitation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rsvp night" id="rsvp">
+    <div class="wrap">
+      <form class="rsvp-card reveal" id="rsvpForm" novalidate>
+        <p class="eyebrow dark">Kindly reply by 5 December</p>
+        <h2 class="section-title">R.S.V.P</h2>
+
+        <label class="field" for="rName"><span>Your name</span>
+          <input id="rName" name="name" type="text" autocomplete="name" placeholder="e.g. Ayesha Khan" required>
+        </label>
+        <p class="err" id="nameErr" hidden>Please write your name so the family knows who replied.</p>
+
+        <fieldset class="field">
+          <legend>Will you join us?</legend>
+          <div class="seg">
+            <input type="radio" id="rYes" name="attend" value="yes" checked><label for="rYes">Joyfully accept</label>
+            <input type="radio" id="rNo" name="attend" value="no"><label for="rNo">Regretfully decline</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field" id="evField">
+          <legend>Which evenings?</legend>
+          <div class="chips">
+            <input type="checkbox" id="cM" value="Mehndi" checked><label for="cM">Mehndi</label>
+            <input type="checkbox" id="cB" value="Barat" checked><label for="cB">Barat</label>
+            <input type="checkbox" id="cW" value="Walima" checked><label for="cW">Walima</label>
+          </div>
+        </fieldset>
+
+        <div class="field row" id="guestField">
+          <span>Guests including you</span>
+          <div class="stepper">
+            <button type="button" id="gMinus" aria-label="Fewer guests">−</button>
+            <output id="gCount" aria-live="polite">1</output>
+            <button type="button" id="gPlus" aria-label="More guests">+</button>
+          </div>
+        </div>
+
+        <label class="field" for="rMsg"><span>A dua for the couple</span>
+          <textarea id="rMsg" rows="3" placeholder="May Allah bless you both…"></textarea>
+        </label>
+
+        <button class="btn gold wide" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/></svg>
+          Send RSVP on WhatsApp
+        </button>
+        <p class="fine">WhatsApp opens with your reply written. Press send there.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer night">
+    <p class="dua" lang="ar" dir="rtl">بَارَكَ ٱللَّٰهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+    <p class="dua-en">May Allah bless you both, shower His blessings upon you, and unite you in goodness.</p>
+    <p class="foil foot-names">Hamza &amp; Anaya</p>
+    <p class="foot-small">With love · the Mahmood &amp; Siddiqui families</p>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
+<script type="module" src="scene.js"></script>
+</body>
+</html>
