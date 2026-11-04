@@ -154,7 +154,19 @@ function startDust() {
   resize();
   window.addEventListener("resize", resize);
 
-  for (let index = 0; index < 90; index++) {
+  const sprite = document.createElement("canvas");
+  sprite.width = 24;
+  sprite.height = 24;
+  const spriteContext = sprite.getContext("2d");
+  const glow = spriteContext.createRadialGradient(12, 12, 0, 12, 12, 12);
+  glow.addColorStop(0, "rgba(255,244,210,1)");
+  glow.addColorStop(0.3, "rgba(241,221,160,.7)");
+  glow.addColorStop(1, "rgba(241,221,160,0)");
+  spriteContext.fillStyle = glow;
+  spriteContext.fillRect(0, 0, 24, 24);
+
+  const count = window.innerWidth < 700 ? 40 : 70;
+  for (let index = 0; index < count; index++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -177,14 +189,11 @@ function startDust() {
         particle.y = height + 10;
         particle.x = Math.random() * width;
       }
-      const glow = 0.35 + 0.65 * Math.abs(Math.sin(time / 900 + particle.phase));
-      context.beginPath();
-      context.fillStyle = `rgba(241, 221, 160, ${glow * 0.8})`;
-      context.shadowColor = "rgba(241, 221, 160, .9)";
-      context.shadowBlur = 8;
-      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      context.fill();
+      const size = particle.size * 6;
+      context.globalAlpha = 0.3 + 0.6 * Math.abs(Math.sin(time / 900 + particle.phase));
+      context.drawImage(sprite, particle.x - size / 2, particle.y - size / 2, size, size);
     }
+    context.globalAlpha = 1;
     requestAnimationFrame(frame);
   }
 
@@ -336,6 +345,7 @@ function openInvitation(stopDust) {
     document.body.classList.remove("locked");
     document.body.classList.add("opened");
     window.dispatchEvent(new Event("invite:open"));
+    loadScene();
     if (window.ScrollTrigger) {
       ScrollTrigger.refresh();
     }
@@ -430,6 +440,51 @@ function setupGuestName() {
   }
 }
 
+function canRun3D() {
+  const connection = navigator.connection || {};
+  if (connection.saveData || /2g/.test(connection.effectiveType || "")) {
+    return false;
+  }
+  if ((navigator.deviceMemory || 4) < 4 || (navigator.hardwareConcurrency || 4) < 6) {
+    return false;
+  }
+  try {
+    const probe = document.createElement("canvas");
+    return Boolean(probe.getContext("webgl2") || probe.getContext("webgl"));
+  } catch (error) {
+    return false;
+  }
+}
+
+function showLightRings() {
+  $("#scene").hidden = true;
+  $("#cssRings").hidden = false;
+}
+
+function loadScene() {
+  if (loadScene.started) {
+    return;
+  }
+  loadScene.started = true;
+  if (!canRun3D()) {
+    showLightRings();
+    return;
+  }
+  import("./scene.js").catch(showLightRings);
+}
+
+function prefetchScene() {
+  if (!canRun3D()) {
+    return;
+  }
+  const start = () => setTimeout(loadScene, 1200);
+  if (document.readyState === "complete") {
+    start();
+  } else {
+    window.addEventListener("load", start, { once: true });
+  }
+}
+
 function heroIntro() {
   if (reduceMotion || !window.gsap) {
     return;
@@ -492,13 +547,21 @@ function setupTilt() {
     targetY = Math.max(-1, Math.min(1, (event.beta - 45) / 25));
   });
 
+  let onScreen = false;
+  new IntersectionObserver((entries) => {
+    onScreen = entries[0].isIntersecting;
+  }).observe(card);
+
   function frame() {
+    requestAnimationFrame(frame);
+    if (!onScreen) {
+      return;
+    }
     currentX += (targetX - currentX) * 0.08;
     currentY += (targetY - currentY) * 0.08;
     card.style.transform = `rotateY(${currentX * 14}deg) rotateX(${-currentY * 12}deg) translateZ(0)`;
     card.style.setProperty("--gx", `${50 + currentX * 40}%`);
     card.style.setProperty("--gy", `${30 + currentY * 30}%`);
-    requestAnimationFrame(frame);
   }
 
   requestAnimationFrame(frame);
@@ -547,7 +610,16 @@ function setupCarousel() {
   stage.addEventListener("pointerup", release);
   stage.addEventListener("pointercancel", release);
 
+  let onScreen = false;
+  new IntersectionObserver((entries) => {
+    onScreen = entries[0].isIntersecting;
+  }).observe(stage);
+
   function frame() {
+    requestAnimationFrame(frame);
+    if (!onScreen) {
+      return;
+    }
     if (!dragging) {
       velocity *= 0.95;
       angle += velocity + (reduceMotion ? 0 : -0.12);
@@ -556,9 +628,8 @@ function setupCarousel() {
     ring.style.transform = `translateZ(${-radius}px) rotateX(-6deg) rotateY(${angle}deg)`;
     figures.forEach((figure, index) => {
       const facing = Math.cos(((index * step + angle) * Math.PI) / 180);
-      figure.style.filter = `brightness(${0.45 + 0.55 * Math.max(0, facing)})`;
+      figure.style.opacity = (0.35 + 0.65 * Math.max(0, facing)).toFixed(2);
     });
-    requestAnimationFrame(frame);
   }
 
   requestAnimationFrame(frame);
@@ -795,6 +866,9 @@ if (new URLSearchParams(location.search).has("open")) {
   document.body.classList.remove("locked");
   document.body.classList.add("opened");
   window.dispatchEvent(new Event("invite:open"));
+  loadScene();
+} else {
+  prefetchScene();
 }
 setupLanguage();
 setupTilt();

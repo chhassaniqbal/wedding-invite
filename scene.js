@@ -1,9 +1,5 @@
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
 const canvas = document.getElementById("scene");
 const hero = document.querySelector(".hero");
@@ -11,7 +7,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const small = window.innerWidth < 700;
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.75 : 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 1.75));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.1;
@@ -80,19 +76,13 @@ function diamondGeometry() {
   return geometry.toNonIndexed();
 }
 
-const yellowGold = new THREE.MeshPhysicalMaterial({ color: 0xf2c76e, metalness: 1, roughness: 0.13, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 1.3 });
-const roseGold = new THREE.MeshPhysicalMaterial({ color: 0xf4b39c, metalness: 1, roughness: 0.17, clearcoat: 1, clearcoatRoughness: 0.08, envMapIntensity: 1.25 });
-const diamondMaterial = new THREE.MeshPhysicalMaterial({
-  color: 0xffffff,
-  metalness: 0,
-  roughness: 0,
-  transmission: 1,
-  thickness: 0.5,
-  ior: 2.42,
-  iridescence: 0.8,
-  iridescenceIOR: 1.8,
-  specularIntensity: 1,
-  envMapIntensity: 3,
+const yellowGold = new THREE.MeshStandardMaterial({ color: 0xe9c27a, metalness: 1, roughness: 0.34, envMapIntensity: 1.35 });
+const roseGold = new THREE.MeshStandardMaterial({ color: 0xeeb09a, metalness: 1, roughness: 0.38, envMapIntensity: 1.3 });
+const diamondMaterial = new THREE.MeshStandardMaterial({
+  color: 0xf4f8ff,
+  metalness: 0.15,
+  roughness: 0.04,
+  envMapIntensity: 3.2,
   flatShading: true
 });
 
@@ -214,7 +204,7 @@ function petalGeometry() {
   return geometry;
 }
 
-const petalCount = small ? 40 : 70;
+const petalCount = small ? 24 : 50;
 const petalMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5, metalness: 0.05, side: THREE.DoubleSide, emissive: 0x220006 });
 const petals = new THREE.InstancedMesh(petalGeometry(), petalMaterial, petalCount);
 scene.add(petals);
@@ -253,7 +243,7 @@ function dotTexture() {
   return texture;
 }
 
-const sparkCount = 240;
+const sparkCount = small ? 90 : 160;
 const sparkPositions = new Float32Array(sparkCount * 3);
 for (let index = 0; index < sparkCount; index++) {
   sparkPositions[index * 3] = (Math.random() - 0.5) * 14;
@@ -268,11 +258,6 @@ const sparks = new THREE.Points(
 );
 scene.add(sparks);
 
-const composer = new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.6, 0.55, 0.78);
-composer.addPass(bloom);
-composer.addPass(new OutputPass());
 
 let pointerX = 0;
 let pointerY = 0;
@@ -294,8 +279,6 @@ function resize() {
   const width = hero.clientWidth;
   const height = hero.clientHeight;
   renderer.setSize(width, height, false);
-  composer.setSize(width, height);
-  bloom.resolution.set(width / 2, height / 2);
   camera.aspect = width / height;
   const narrow = camera.aspect < 0.8;
   camera.fov = narrow ? 48 : 35;
@@ -312,8 +295,10 @@ new IntersectionObserver((entries) => {
   visible = entries[0].isIntersecting;
 }).observe(hero);
 
+let active = document.body.classList.contains("opened");
 let introStart = performance.now();
 window.addEventListener("invite:open", () => {
+  active = true;
   introStart = performance.now();
 });
 
@@ -322,7 +307,7 @@ const clock = new THREE.Clock();
 
 function animate() {
   requestAnimationFrame(animate);
-  if (!visible) {
+  if (!visible || !active || document.hidden) {
     return;
   }
   const time = clock.getElapsedTime();
@@ -372,7 +357,7 @@ function animate() {
   sparks.material.opacity = 0.6 + Math.sin(time * 2) * 0.25;
   rimLight.intensity = 13 + Math.sin(time * 1.3) * 4;
 
-  composer.render();
+  renderer.render(scene, camera);
 }
 
 animate();

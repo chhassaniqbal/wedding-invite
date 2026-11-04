@@ -14,10 +14,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236E1426'/%3E%3Ctext x='32' y='42' font-size='26' text-anchor='middle' fill='%23F1DDA0' font-family='Georgia'%3EH%26A%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Imperial+Script&family=Noto+Nastaliq+Urdu:wght@500&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital@0;1&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Great+Vibes&family=Noto+Nastaliq+Urdu:wght@500&display=swap">
 <link rel="stylesheet" href="style.css">
 <script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
 </script>
 </head>
 <body class="locked">
@@ -69,6 +69,7 @@
 
   <section class="hero" id="top">
     <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="css-rings" id="cssRings" hidden aria-hidden="true"><span></span><span></span><i></i></div>
     <div class="hero-veil"></div>
     <div class="hero-arch" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -98,7 +99,7 @@
 
       <div class="tilt-stage reveal">
         <figure class="arch tilt" id="tiltCard">
-          <img src="images/couple3.jpg" alt="The couple in wedding dress outside a white arched pavilion" loading="lazy">
+          <img src="images/couple3.webp" alt="The couple in wedding dress outside a white arched pavilion" loading="lazy">
           <span class="arch-glare"></span>
           <span class="arch-frame"></span>
         </figure>
@@ -146,14 +147,14 @@
     </div>
     <div class="carousel-stage" id="carouselStage">
       <div class="carousel" id="carousel">
-        <figure><img src="images/couple1.jpg" alt="Couple portrait among trees at golden hour" loading="lazy"></figure>
-        <figure><img src="images/bride1.jpg" alt="Bride in a red and gold lehenga" loading="lazy"></figure>
-        <figure><img src="images/couple2.jpg" alt="Couple holding hands by a marble terrace" loading="lazy"></figure>
-        <figure><img src="images/rings.jpg" alt="Hands with henna and a gold ring" loading="lazy"></figure>
-        <figure><img src="images/bride2.jpg" alt="Bride with traditional jewellery" loading="lazy"></figure>
-        <figure><img src="images/bride3.jpg" alt="Bride in a blue and gold outfit" loading="lazy"></figure>
-        <figure><img src="images/henna.jpg" alt="Hands decorated with henna" loading="lazy"></figure>
-        <figure><img src="images/couple3.jpg" alt="Couple in front of a white arched pavilion" loading="lazy"></figure>
+        <figure><img src="images/couple1.webp" alt="Couple portrait among trees at golden hour" loading="lazy"></figure>
+        <figure><img src="images/bride1.webp" alt="Bride in a red and gold lehenga" loading="lazy"></figure>
+        <figure><img src="images/couple2.webp" alt="Couple holding hands by a marble terrace" loading="lazy"></figure>
+        <figure><img src="images/rings.webp" alt="Hands with henna and a gold ring" loading="lazy"></figure>
+        <figure><img src="images/bride2.webp" alt="Bride with traditional jewellery" loading="lazy"></figure>
+        <figure><img src="images/bride3.webp" alt="Bride in a blue and gold outfit" loading="lazy"></figure>
+        <figure><img src="images/henna.webp" alt="Hands decorated with henna" loading="lazy"></figure>
+        <figure><img src="images/couple3.webp" alt="Couple in front of a white arched pavilion" loading="lazy"></figure>
       </div>
     </div>
     <p class="drag-hint reveal">Drag or swipe to turn</p>
@@ -169,7 +170,7 @@
         <article class="ev reveal" data-flip data-event="mehndi">
           <div class="ev-inner">
             <div class="ev-face ev-front">
-              <img src="images/henna.jpg" alt="" loading="lazy">
+              <img src="images/henna.webp" alt="" loading="lazy">
               <div class="ev-shade"></div>
               <div class="ev-title">
                 <span class="ev-ur" lang="ur" dir="rtl">مہندی</span>
@@ -198,7 +199,7 @@
         <article class="ev featured reveal" data-flip data-event="barat">
           <div class="ev-inner">
             <div class="ev-face ev-front">
-              <img src="images/couple1.jpg" alt="" loading="lazy">
+              <img src="images/couple1.webp" alt="" loading="lazy">
               <div class="ev-shade"></div>
               <div class="ev-title">
                 <span class="ev-ur" lang="ur" dir="rtl">بارات و نکاح</span>
@@ -228,7 +229,7 @@
         <article class="ev reveal" data-flip data-event="walima">
           <div class="ev-inner">
             <div class="ev-face ev-front">
-              <img src="images/couple2.jpg" alt="" loading="lazy">
+              <img src="images/couple2.webp" alt="" loading="lazy">
               <div class="ev-shade"></div>
               <div class="ev-title">
                 <span class="ev-ur" lang="ur" dir="rtl">ولیمہ</span>
@@ -261,7 +262,7 @@
       <p class="eyebrow dark reveal" data-ur="مقام">The venue</p>
       <h2 class="section-title reveal" id="venueName">The Grand <em>Pavilion</em></h2>
       <div class="venue-card reveal">
-        <div class="venue-photo"><img src="images/couple2.jpg" alt="Marble terrace at the venue" loading="lazy"></div>
+        <div class="venue-photo"><img src="images/couple2.webp" alt="Marble terrace at the venue" loading="lazy"></div>
         <div class="venue-info">
           <p id="venueAddress">Main Boulevard, DHA Phase 6, Lahore</p>
           <p class="muted" id="venueNote">Valet parking at Gate 2 · Separate seating for ladies</p>
@@ -339,6 +340,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="app.js"></script>
-<script type="module" src="scene.js"></script>
 </body>
 </html>
