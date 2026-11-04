@@ -207,6 +207,8 @@ function petalGeometry() {
 const petalCount = small ? 24 : 50;
 const petalMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5, metalness: 0.05, side: THREE.DoubleSide, emissive: 0x220006 });
 const petals = new THREE.InstancedMesh(petalGeometry(), petalMaterial, petalCount);
+petals.frustumCulled = false;
+petals.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
 scene.add(petals);
 const petalState = [];
 const palette = [new THREE.Color(0x9e1230), new THREE.Color(0xc4304e), new THREE.Color(0xf0cfc5)];
@@ -302,24 +304,34 @@ window.addEventListener("invite:open", () => {
   introStart = performance.now();
 });
 
+renderer.compile(scene, camera);
+
 const dummy = new THREE.Object3D();
 const clock = new THREE.Clock();
+let lastFrame = performance.now();
 
-function animate() {
+function follow(rate, step) {
+  return 1 - Math.pow(1 - rate, step);
+}
+
+function animate(now = performance.now()) {
   requestAnimationFrame(animate);
+  const step = Math.min(3, (now - lastFrame) / 16.667);
+  lastFrame = now;
   if (!visible || !active || document.hidden) {
     return;
   }
   const time = clock.getElapsedTime();
-  const motion = reduceMotion ? 0.15 : 1;
+  const motion = (reduceMotion ? 0.15 : 1) * step;
 
   const intro = Math.min(1, (performance.now() - introStart) / 3000);
   const ease = 1 - Math.pow(1 - intro, 3);
   camera.position.z = 13 - 4 * ease;
 
-  rings.rotation.y = Math.sin(time * 0.3) * 0.7 * motion + pointerX * 0.9 + (1 - ease) * 2.5;
-  rings.rotation.x = Math.sin(time * 0.45) * 0.1 * motion + pointerY * 0.45;
-  rings.position.y += (Math.sin(time * 1.1) * 0.07 * motion + baseY - rings.position.y) * 0.05;
+  const sway = reduceMotion ? 0.15 : 1;
+  rings.rotation.y = Math.sin(time * 0.3) * 0.7 * sway + pointerX * 0.9 + (1 - ease) * 2.5;
+  rings.rotation.x = Math.sin(time * 0.45) * 0.1 * sway + pointerY * 0.45;
+  rings.position.y += (Math.sin(time * 1.1) * 0.07 * (reduceMotion ? 0.15 : 1) + baseY - rings.position.y) * follow(0.05, step);
   diamond.rotation.y = time * 0.6;
 
   for (const glint of glints) {
@@ -330,8 +342,8 @@ function animate() {
     glint.scale.setScalar(0.15 + flare * 0.55);
   }
 
-  camera.position.x += (pointerX * 0.8 - camera.position.x) * 0.04;
-  camera.position.y += (0.2 - pointerY * 0.6 - camera.position.y) * 0.04;
+  camera.position.x += (pointerX * 0.8 - camera.position.x) * follow(0.04, step);
+  camera.position.y += (0.2 - pointerY * 0.6 - camera.position.y) * follow(0.04, step);
   camera.lookAt(0, 0.6, 0);
 
   for (let index = 0; index < petalCount; index++) {
@@ -360,4 +372,4 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-animate();
+requestAnimationFrame(animate);
