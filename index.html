@@ -34,7 +34,7 @@
         <div class="letter" id="letter">
           <span class="letter-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
           <span class="letter-mono">Hamza <i>&amp;</i> Anaya</span>
-          <span class="letter-line">12 · XII · 2026</span>
+          <span class="letter-line" id="letterDate">12 December 2026</span>
         </div>
         <div class="env-pocket velvet">
           <div class="pocket-lines"></div>
@@ -81,8 +81,8 @@
       </h1>
       <p class="names-ur" lang="ur" dir="rtl">حمزہ و عنایہ</p>
       <div class="hero-date">
-        <span>Mehndi · Barat · Walima</span>
-        <b>10 — 13 December 2026</b>
+        <span id="heroEvents">Mehndi · Barat · Walima</span>
+        <b id="heroDates">10 — 13 December 2026</b>
       </div>
       <p class="hero-city">Lahore · Pakistan</p>
     </div>
@@ -115,24 +115,24 @@
       </div>
 
       <div class="dateblock reveal">
-        <span class="db-side">Saturday</span>
-        <span class="db-day">12</span>
+        <span class="db-side" id="dbDay">Saturday</span>
+        <span class="db-day" id="dbDate">12</span>
         <span class="db-side">December<br>2026</span>
       </div>
-      <p class="hijri reveal">Rajab 1448 AH · The Barat</p>
+      <p class="hijri reveal" id="hijri">Rajab 1448 AH · The Barat</p>
     </div>
   </section>
 
   <section class="countdown night" id="countdown">
     <div class="wrap">
-      <p class="eyebrow reveal" data-ur="بارات میں باقی وقت">Counting down to the Barat</p>
+      <p class="eyebrow reveal" id="countLabel" data-ur="بارات میں باقی وقت">Counting down to the Barat</p>
       <div class="flipclock reveal" id="clock">
         <div class="unit"><div class="flip" data-unit="d"><span>00</span></div><small>Days</small></div>
         <div class="unit"><div class="flip" data-unit="h"><span>00</span></div><small>Hours</small></div>
         <div class="unit"><div class="flip" data-unit="m"><span>00</span></div><small>Minutes</small></div>
         <div class="unit"><div class="flip" data-unit="s"><span>00</span></div><small>Seconds</small></div>
       </div>
-      <button class="btn-ghost reveal" type="button" data-ics="barat">
+      <button class="btn-ghost reveal" type="button" id="saveDate" data-ics="barat">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
         <span data-ur="تاریخ محفوظ کریں">Save the date</span>
       </button>
@@ -161,12 +161,12 @@
 
   <section class="events night" id="events">
     <div class="wrap">
-      <p class="eyebrow reveal" data-ur="تین شامیں">Three evenings</p>
+      <p class="eyebrow reveal" id="evCount" data-ur="تین شامیں">Three evenings</p>
       <h2 class="section-title light reveal">The <em>Celebrations</em></h2>
       <p class="tap-hint reveal">Tap a card to see the details</p>
 
       <div class="event-list">
-        <article class="ev reveal" data-flip>
+        <article class="ev reveal" data-flip data-event="mehndi">
           <div class="ev-inner">
             <div class="ev-face ev-front">
               <img src="images/henna.jpg" alt="" loading="lazy">
@@ -195,7 +195,7 @@
           </div>
         </article>
 
-        <article class="ev featured reveal" data-flip>
+        <article class="ev featured reveal" data-flip data-event="barat">
           <div class="ev-inner">
             <div class="ev-face ev-front">
               <img src="images/couple1.jpg" alt="" loading="lazy">
@@ -225,7 +225,7 @@
           </div>
         </article>
 
-        <article class="ev reveal" data-flip>
+        <article class="ev reveal" data-flip data-event="walima">
           <div class="ev-inner">
             <div class="ev-face ev-front">
               <img src="images/couple2.jpg" alt="" loading="lazy">
@@ -259,14 +259,14 @@
   <section class="venue pearl" id="venue">
     <div class="wrap">
       <p class="eyebrow dark reveal" data-ur="مقام">The venue</p>
-      <h2 class="section-title reveal">The Grand <em>Pavilion</em></h2>
+      <h2 class="section-title reveal" id="venueName">The Grand <em>Pavilion</em></h2>
       <div class="venue-card reveal">
         <div class="venue-photo"><img src="images/couple2.jpg" alt="Marble terrace at the venue" loading="lazy"></div>
         <div class="venue-info">
-          <p>Main Boulevard, DHA Phase 6, Lahore</p>
-          <p class="muted">Valet parking at Gate 2 · Separate seating for ladies</p>
+          <p id="venueAddress">Main Boulevard, DHA Phase 6, Lahore</p>
+          <p class="muted" id="venueNote">Valet parking at Gate 2 · Separate seating for ladies</p>
           <div class="ev-actions">
-            <a class="btn" href="https://maps.google.com/?q=DHA+Phase+6+Lahore" target="_blank" rel="noopener">
+            <a class="btn" id="venueMap" href="https://maps.google.com/?q=DHA+Phase+6+Lahore" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8z"/></svg>Get directions
             </a>
             <button class="btn line" type="button" id="shareBtn">Share invitation</button>

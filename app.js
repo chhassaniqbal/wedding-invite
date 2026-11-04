@@ -3,11 +3,124 @@ const CONFIG = {
   whatsapp: "923000000000",
   countdownTo: "2026-12-12T19:30:00+05:00",
   events: {
-    mehndi: { title: "Mehndi · Hamza & Anaya", start: "20261210T140000Z", end: "20261210T180000Z", place: "Siddiqui residence, Garden Town, Lahore" },
-    barat: { title: "Barat & Nikah · Hamza & Anaya", start: "20261212T143000Z", end: "20261212T183000Z", place: "The Grand Pavilion, DHA Phase 6, Lahore" },
-    walima: { title: "Walima · Hamza & Anaya", start: "20261213T150000Z", end: "20261213T180000Z", place: "The Grand Pavilion, DHA Phase 6, Lahore" }
-  }
+    mehndi: {
+      name: "Mehndi",
+      nameUr: "مہندی",
+      chip: "cM",
+      weekday: "Thursday",
+      day: 10,
+      hijri: "1448 AH",
+      startsAt: "2026-12-10T19:00:00+05:00",
+      title: "Mehndi · Hamza & Anaya",
+      start: "20261210T140000Z",
+      end: "20261210T180000Z",
+      place: "Siddiqui residence, Garden Town, Lahore",
+      venueTitle: "The Siddiqui <em>Residence</em>",
+      venueAddress: "Garden Town, Lahore",
+      venueNote: "Parking in the street outside · Ladies and gents together",
+      map: "https://maps.google.com/?q=Garden+Town+Lahore"
+    },
+    barat: {
+      name: "Barat",
+      nameUr: "بارات",
+      chip: "cB",
+      weekday: "Saturday",
+      day: 12,
+      hijri: "Rajab 1448 AH",
+      startsAt: "2026-12-12T19:30:00+05:00",
+      title: "Barat & Nikah · Hamza & Anaya",
+      start: "20261212T143000Z",
+      end: "20261212T183000Z",
+      place: "The Grand Pavilion, DHA Phase 6, Lahore",
+      venueTitle: "The Grand <em>Pavilion</em>",
+      venueAddress: "Main Boulevard, DHA Phase 6, Lahore",
+      venueNote: "Valet parking at Gate 2 · Separate seating for ladies",
+      map: "https://maps.google.com/?q=DHA+Phase+6+Lahore"
+    },
+    walima: {
+      name: "Walima",
+      nameUr: "ولیمہ",
+      chip: "cW",
+      weekday: "Sunday",
+      day: 13,
+      hijri: "Rajab 1448 AH",
+      startsAt: "2026-12-13T20:00:00+05:00",
+      title: "Walima · Hamza & Anaya",
+      start: "20261213T150000Z",
+      end: "20261213T180000Z",
+      place: "The Grand Pavilion, DHA Phase 6, Lahore",
+      venueTitle: "The Grand <em>Pavilion</em>",
+      venueAddress: "Main Boulevard, DHA Phase 6, Lahore",
+      venueNote: "Valet parking at Gate 2 · Separate seating for ladies",
+      map: "https://maps.google.com/?q=DHA+Phase+6+Lahore"
+    }
+  },
+  month: "December 2026",
+  order: ["mehndi", "barat", "walima"]
 };
+
+function invitedEvents() {
+  const raw = new URLSearchParams(location.search).get("events");
+  if (!raw) {
+    return CONFIG.order.slice();
+  }
+  const wanted = raw.toLowerCase().split(/[\s,]+/);
+  const picked = CONFIG.order.filter((key) => wanted.includes(key));
+  return picked.length ? picked : CONFIG.order.slice();
+}
+
+function applyInvitedEvents() {
+  const invited = invitedEvents();
+  const main = invited.includes("barat") ? "barat" : invited[0];
+  const primary = CONFIG.events[main];
+  const first = CONFIG.events[invited[0]];
+  const last = CONFIG.events[invited[invited.length - 1]];
+  const countWords = ["", "One evening", "Two evenings", "Three evenings"];
+  const countWordsUr = ["", "ایک شام", "دو شامیں", "تین شامیں"];
+
+  for (const card of $$("[data-event]")) {
+    card.hidden = !invited.includes(card.dataset.event);
+  }
+  for (const key of CONFIG.order) {
+    const chip = $(`#${CONFIG.events[key].chip}`);
+    const label = $(`label[for="${CONFIG.events[key].chip}"]`);
+    const included = invited.includes(key);
+    chip.checked = included;
+    chip.disabled = !included;
+    chip.hidden = !included;
+    label.hidden = !included;
+  }
+  $("#evField .chips").style.gridTemplateColumns = `repeat(${invited.length}, minmax(0, 1fr))`;
+  if (invited.length === 1) {
+    $("#evField").hidden = true;
+  }
+
+  $("#heroEvents").textContent = invited.map((key) => CONFIG.events[key].name).join(" · ");
+  $("#heroDates").textContent = first === last
+    ? `${first.weekday}, ${first.day} ${CONFIG.month}`
+    : `${first.day} — ${last.day} ${CONFIG.month}`;
+  $("#letterDate").textContent = `${primary.day} ${CONFIG.month}`;
+  $("#dbDay").textContent = primary.weekday;
+  $("#dbDate").textContent = primary.day;
+  $("#hijri").textContent = `${primary.hijri} · The ${primary.name}`;
+
+  const countLabel = $("#countLabel");
+  countLabel.textContent = `Counting down to the ${primary.name}`;
+  countLabel.dataset.ur = `${primary.nameUr} میں باقی وقت`;
+  delete countLabel.dataset.en;
+  CONFIG.countdownTo = primary.startsAt;
+  $("#saveDate").dataset.ics = main;
+
+  const evCount = $("#evCount");
+  evCount.textContent = countWords[invited.length];
+  evCount.dataset.ur = countWordsUr[invited.length];
+  delete evCount.dataset.en;
+
+  $("#venueName").innerHTML = primary.venueTitle;
+  $("#venueAddress").textContent = primary.venueAddress;
+  $("#venueNote").textContent = primary.venueNote;
+  $("#venueMap").href = primary.map;
+}
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (selector) => document.querySelector(selector);
@@ -673,6 +786,7 @@ function setupMusicButton() {
 }
 
 setupGuestName();
+applyInvitedEvents();
 const stopDust = startDust();
 $("#seal").addEventListener("click", () => openInvitation(stopDust));
 if (new URLSearchParams(location.search).has("open")) {

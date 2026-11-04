@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Invitation Links · Hamza &amp; Anaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Imperial+Script&display=swap">
+<style>
+:root {
+  --velvet: #1B0F15;
+  --wine: #6E1426;
+  --pearl: #FBF6EE;
+  --ink: #2A1F1C;
+  --muted: #6B5A50;
+  --gold: #C9A45C;
+  --gold-lt: #F1DDA0;
+  --gold-dk: #8C6A2C;
+  --line: #D9C7A2;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: radial-gradient(ellipse at 50% 0%, rgba(110,20,38,.45), transparent 60%), var(--velvet);
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.5;
+  padding: 40px max(16px, env(safe-area-inset-right, 0px)) 60px max(16px, env(safe-area-inset-left, 0px));
+}
+main { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+header { text-align: center; color: var(--pearl); }
+header small { font-family: Cinzel, Georgia, serif; font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--gold-lt); }
+header h1 { margin: 4px 0 0; font-family: "Imperial Script", cursive; font-weight: 400; font-size: 58px; line-height: 1.2; color: var(--gold-lt); }
+header p { margin: 0; font-style: italic; color: #CDBF9F; }
+.card { background: var(--pearl); border-radius: 22px; padding: 26px 22px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 40px 70px -35px rgba(0,0,0,.9); }
+label.title, .legend { font-family: Cinzel, Georgia, serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.field { display: flex; flex-direction: column; gap: 8px; }
+input[type="text"] { width: 100%; min-height: 52px; padding: 10px 16px; border-radius: 14px; border: 1px solid var(--line); background: #FFFDF8; color: var(--ink); font: inherit; }
+input[type="text"]:focus { outline: none; border-color: var(--gold-dk); box-shadow: 0 0 0 3px rgba(201,164,92,.25); }
+.chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.chips input { position: absolute; opacity: 0; pointer-events: none; }
+.chips label { min-height: 50px; display: grid; place-items: center; border-radius: 14px; border: 1px solid var(--line); background: #FFFDF8; cursor: pointer; font-size: 18px; }
+.chips input:checked + label { background: var(--wine); border-color: var(--wine); color: var(--pearl); }
+.chips input:focus-visible + label { outline: 2px solid var(--gold-dk); outline-offset: 2px; }
+.out { padding: 14px 16px; border-radius: 14px; background: #F3E9D6; border: 1px dashed var(--gold); font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.5; word-break: break-all; color: var(--ink); user-select: all; }
+.actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border-radius: 999px; border: 1px solid var(--wine); background: var(--wine); color: var(--pearl); font-family: Cinzel, Georgia, serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; cursor: pointer; text-align: center; }
+.btn.line { background: transparent; color: var(--wine); }
+.btn.wa { background: #1F7A4D; border-color: #1F7A4D; }
+.err { margin: -8px 0 0; font-size: 16px; color: #9B1B30; }
+.recent { display: flex; flex-direction: column; gap: 8px; }
+.recent h2 { margin: 0; font-family: Cinzel, Georgia, serif; font-weight: 500; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-lt); text-align: center; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-radius: 14px; background: rgba(251,246,238,.06); border: 1px solid rgba(241,221,160,.2); color: var(--pearl); }
+.row div { min-width: 0; }
+.row b { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row span { font-size: 15px; color: #CDBF9F; }
+.row button { flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(241,221,160,.5); background: transparent; color: var(--gold-lt); font-family: Cinzel, Georgia, serif; font-size: 10px; letter-spacing: .12em; cursor: pointer; }
+.empty { text-align: center; font-style: italic; color: #A8957C; margin: 0; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; padding: 10px 18px; border-radius: 999px; background: rgba(20,10,14,.94); color: var(--gold-lt); border: 1px solid rgba(241,221,160,.4); transition: opacity .3s, transform .3s; pointer-events: none; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 420px) { .actions { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <small>For the family only</small>
+    <h1>Invitation Links</h1>
+    <p>Write the guest's name, choose the functions, and send the link.</p>
+  </header>
+
+  <form class="card" id="form" novalidate>
+    <div class="field">
+      <label class="title" for="guest">Guest name, as it should appear on the envelope</label>
+      <input id="guest" type="text" placeholder="e.g. Ahmed Family" autocomplete="off" maxlength="40">
+    </div>
+    <p class="err" id="err" hidden>Write the guest's name first.</p>
+
+    <div class="field">
+      <span class="legend">Invited to</span>
+      <div class="chips">
+        <input type="checkbox" id="eM" value="mehndi" checked><label for="eM">Mehndi</label>
+        <input type="checkbox" id="eB" value="barat" checked><label for="eB">Barat</label>
+        <input type="checkbox" id="eW" value="walima" checked><label for="eW">Walima</label>
+      </div>
+    </div>
+    <p class="err" id="errEv" hidden>Choose at least one function.</p>
+
+    <div class="field">
+      <span class="legend">Link for this guest</span>
+      <div class="out" id="out">Write a name to make the link.</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn line" type="button" id="copy">Copy link</button>
+      <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+      <a class="btn line" id="open" href="#" target="_blank" rel="noopener">Preview</a>
+    </div>
+  </form>
+
+  <section class="recent" aria-live="polite">
+    <h2>Recent links</h2>
+    <div id="recent"></div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const names = { mehndi: "Mehndi", barat: "Barat", walima: "Walima" };
+const base = new URL("./", location.href).href;
+const guest = document.getElementById("guest");
+const out = document.getElementById("out");
+const boxes = Array.from(document.querySelectorAll(".chips input"));
+const storeKey = "inviteLinks";
+
+function chosen() {
+  return boxes.filter((box) => box.checked).map((box) => box.value);
+}
+
+function linkFor(name, events) {
+  const params = new URLSearchParams();
+  params.set("to", name);
+  if (events.length < 3) {
+    params.set("events", events.join(","));
+  }
+  return `${base}?${params.toString().replace(/\+/g, "%20")}`;
+}
+
+function message(name, events, link) {
+  const list = events.map((key) => names[key]).join(", ");
+  return `Assalam-o-Alaikum ${name}!\n\nAap ko Hamza & Anaya ki shadi (${list}) par dil se dawat hai.\nCard dekhne ke liye link kholein:\n${link}`;
+}
+
+function toast(text) {
+  const element = document.getElementById("toast");
+  element.textContent = text;
+  element.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => element.classList.remove("show"), 2200);
+}
+
+function readRecent() {
+  try {
+    return JSON.parse(localStorage.getItem(storeKey) || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function remember(name, events, link) {
+  const list = readRecent().filter((item) => item.link !== link);
+  list.unshift({ name, events, link });
+  try {
+    localStorage.setItem(storeKey, JSON.stringify(list.slice(0, 30)));
+  } catch (error) {
+    return;
+  }
+  renderRecent();
+}
+
+function renderRecent() {
+  const holder = document.getElementById("recent");
+  const list = readRecent();
+  holder.innerHTML = "";
+  if (!list.length) {
+    const empty = document.createElement("p");
+    empty.className = "empty";
+    empty.textContent = "Links you copy or send will be listed here on this device.";
+    holder.appendChild(empty);
+    return;
+  }
+  for (const item of list) {
+    const row = document.createElement("div");
+    row.className = "row";
+    const text = document.createElement("div");
+    const title = document.createElement("b");
+    title.textContent = item.name;
+    const detail = document.createElement("span");
+    detail.textContent = item.events.map((key) => names[key]).join(" · ");
+    text.append(title, detail);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "COPY";
+    button.addEventListener("click", () => copy(item.link));
+    row.append(text, button);
+    holder.appendChild(row);
+  }
+}
+
+async function copy(link) {
+  try {
+    await navigator.clipboard.writeText(link);
+    toast("Link copied");
+  } catch (error) {
+    const range = document.createRange();
+    range.selectNodeContents(out);
+    getSelection().removeAllRanges();
+    getSelection().addRange(range);
+    toast("Press Ctrl+C to copy");
+  }
+}
+
+function current() {
+  const name = guest.value.trim();
+  const events = chosen();
+  document.getElementById("errEv").hidden = events.length > 0;
+  if (!name || !events.length) {
+    return null;
+  }
+  return { name, events, link: linkFor(name, events) };
+}
+
+function update() {
+  const data = current();
+  out.textContent = data ? data.link : "Write a name to make the link.";
+  const wa = document.getElementById("wa");
+  const open = document.getElementById("open");
+  wa.href = data ? `https://wa.me/?text=${encodeURIComponent(message(data.name, data.events, data.link))}` : "#";
+  open.href = data ? data.link : "#";
+  if (data) {
+    document.getElementById("err").hidden = true;
+  }
+}
+
+function guard(event) {
+  const data = current();
+  if (!data) {
+    event.preventDefault();
+    document.getElementById("err").hidden = Boolean(guest.value.trim());
+    guest.focus();
+    return null;
+  }
+  return data;
+}
+
+guest.addEventListener("input", update);
+boxes.forEach((box) => box.addEventListener("change", update));
+document.getElementById("copy").addEventListener("click", (event) => {
+  const data = guard(event);
+  if (data) {
+    copy(data.link);
+    remember(data.name, data.events, data.link);
+  }
+});
+document.getElementById("wa").addEventListener("click", (event) => {
+  const data = guard(event);
+  if (data) {
+    remember(data.name, data.events, data.link);
+  }
+});
+document.getElementById("open").addEventListener("click", guard);
+document.getElementById("form").addEventListener("submit", (event) => event.preventDefault());
+update();
+renderRecent();
+</script>
+</body>
+</html>
