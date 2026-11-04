@@ -368,7 +368,10 @@ function openInvitation(stopDust) {
   timeline
     .to(envelope, { rotationX: 0, rotationY: 0, y: 0, duration: 0.6, ease: "power2.out" })
     .to(seal, { scale: 0.9, duration: 0.16, ease: "power2.in" }, 0)
-    .call(() => burst(seal))
+    .call(() => {
+      seal.classList.add("broken");
+      burst(seal);
+    })
     .to(halves[0], { x: -46, y: 70, rotation: -38, opacity: 0, duration: 0.9, ease: "power2.in" })
     .to(halves[1], { x: 46, y: 70, rotation: 38, opacity: 0, duration: 0.9, ease: "power2.in" }, "<")
     .to(".gate-hint, .gate-kicker, .gate-sound, .gate-bism", { opacity: 0, duration: 0.5 }, "<")
