@@ -7,7 +7,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const small = window.innerWidth < 700;
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 1.75));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.1;

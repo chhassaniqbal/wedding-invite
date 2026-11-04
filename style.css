@@ -13,7 +13,8 @@
   --gold-dk: #8C6A2C;
   --cream-on-night: #E9DCC6;
   --foil: linear-gradient(100deg, #A9864A 0%, #D6BA7E 35%, #C7A464 65%, #B18F52 100%);
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --grain-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .85 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   --f-script: "Great Vibes", "Segoe Script", cursive;
   --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --f-label: "Cinzel", "Trajan Pro", Georgia, serif;
@@ -31,7 +32,7 @@ main { overflow-x: clip; }
 .gallery, .events, .invite { contain: paint; }
 body {
   margin: 0;
-  background: var(--night);
+  background: var(--grain-dark), var(--night);
   color: var(--ink);
   font-family: var(--f-body);
   font-size: 19px;
@@ -65,7 +66,7 @@ section { position: relative; padding-block: 96px; }
 }
 .night {
   background:
-    var(--grain),
+    var(--grain-dark),
     radial-gradient(ellipse at 50% 0%, rgba(110,20,38,.35), transparent 60%),
     var(--velvet);
   color: var(--cream-on-night);
@@ -115,6 +116,7 @@ section { position: relative; padding-block: 96px; }
   display: grid;
   place-items: center;
   background:
+    var(--grain-dark),
     radial-gradient(ellipse 70% 45% at 50% 0%, rgba(241,221,160,.16), transparent 70%),
     radial-gradient(ellipse at 50% 45%, #2C121D 0%, #140A10 55%, #060304 100%);
   color: var(--cream-on-night);
@@ -173,7 +175,7 @@ section { position: relative; padding-block: 96px; }
 .env-back, .env-pocket, .env-flap { position: absolute; inset: 0; border-radius: 10px; }
 .velvet {
   background-image:
-    var(--grain),
+    var(--grain-dark), var(--grain),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
     radial-gradient(ellipse at 30% 15%, rgba(255,210,220,.12), transparent 55%),
     linear-gradient(165deg, #82192F 0%, #5E0F21 55%, #3E0816 100%);
@@ -340,7 +342,7 @@ body.opened .controls { opacity: 1; pointer-events: auto; }
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #0B0608;
+  background: var(--grain-dark), #0B0608;
   color: var(--cream-on-night);
 }
 #scene { position: absolute; inset: 0; width: 100%; height: 100%; }
