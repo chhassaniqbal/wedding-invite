@@ -1,7 +1,7 @@
 /* Velvet night and champagne foil for the cinematic moments, pearl ivory and wine for reading. */
 :root {
   --night: #0E0A0C;
-  --velvet: #1B0F15;
+  --velvet: #231019;
   --wine: #6E1426;
   --wine-deep: #430A17;
   --pearl: #FBF6EE;
@@ -15,6 +15,8 @@
   --foil: linear-gradient(100deg, #A9864A 0%, #D6BA7E 35%, #C7A464 65%, #B18F52 100%);
   --grain: url("images/grain-light.png");
   --grain-dark: url("images/grain-dark.png");
+  --sheen-dark: linear-gradient(115deg, transparent 22%, rgba(255,236,200,.055) 38%, rgba(255,244,220,.09) 46%, rgba(255,236,200,.04) 54%, transparent 70%);
+  --sheen-light: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.35) 40%, rgba(255,255,255,.55) 47%, rgba(255,255,255,.25) 55%, transparent 72%);
   --f-script: "Great Vibes", "Segoe Script", cursive;
   --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --f-label: "Cinzel", "Trajan Pro", Georgia, serif;
@@ -60,14 +62,15 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 section { position: relative; padding-block: 96px; }
 .pearl {
   background-color: var(--pearl);
-  background-image: var(--grain), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23C9A45C' stroke-opacity='.16' stroke-width='1'%3E%3Crect x='22' y='22' width='28' height='28'/%3E%3Crect x='22' y='22' width='28' height='28' transform='rotate(45 36 36)'/%3E%3Cpath d='M0 36h8M64 36h8M36 0v8M36 64v8M0 0l12 12M72 0L60 12M0 72l12-12M72 72L60 60'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 160px 160px, 72px 72px;
+  background-image: var(--sheen-light), var(--grain), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23C9A45C' stroke-opacity='.16' stroke-width='1'%3E%3Crect x='22' y='22' width='28' height='28'/%3E%3Crect x='22' y='22' width='28' height='28' transform='rotate(45 36 36)'/%3E%3Cpath d='M0 36h8M64 36h8M36 0v8M36 64v8M0 0l12 12M72 0L60 12M0 72l12-12M72 72L60 60'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%, 160px 160px, 72px 72px;
   color: var(--ink);
 }
 .night {
   background:
+    var(--sheen-dark),
     var(--grain-dark),
-    radial-gradient(ellipse at 50% 0%, rgba(110,20,38,.35), transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(110,20,38,.45), transparent 62%),
     var(--velvet);
   color: var(--cream-on-night);
 }
@@ -116,9 +119,10 @@ section { position: relative; padding-block: 96px; }
   display: grid;
   place-items: center;
   background:
+    var(--sheen-dark),
     var(--grain-dark),
     radial-gradient(ellipse 70% 45% at 50% 0%, rgba(241,221,160,.16), transparent 70%),
-    radial-gradient(ellipse at 50% 45%, #2C121D 0%, #140A10 55%, #060304 100%);
+    radial-gradient(ellipse at 50% 45%, #34131F 0%, #190A12 55%, #070304 100%);
   color: var(--cream-on-night);
   padding: env(safe-area-inset-top, 0px) var(--gutter-r) env(safe-area-inset-bottom, 0px) var(--gutter-l);
   overflow: hidden;
@@ -351,11 +355,11 @@ body.opened .controls { opacity: 1; pointer-events: auto; }
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--grain-dark), #0B0608;
+  background: var(--grain-dark), #10070B;
   color: var(--cream-on-night);
 }
 #scene { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-veil { position: absolute; inset: 0; background: var(--grain-dark), linear-gradient(180deg, rgba(8,4,5,0) 45%, rgba(8,4,5,.7) 100%); pointer-events: none; }
+.hero-veil { position: absolute; inset: 0; background: var(--sheen-dark), var(--grain-dark), linear-gradient(180deg, rgba(8,4,5,0) 45%, rgba(8,4,5,.7) 100%); pointer-events: none; }
 .hero-arch {
   position: absolute;
   left: 50%;

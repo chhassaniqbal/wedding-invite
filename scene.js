@@ -37,9 +37,9 @@ function backgroundTexture() {
   element.height = 512;
   const context = element.getContext("2d");
   const gradient = context.createLinearGradient(0, 0, 0, 512);
-  gradient.addColorStop(0, "#1A0A11");
-  gradient.addColorStop(0.45, "#24101A");
-  gradient.addColorStop(1, "#070304");
+  gradient.addColorStop(0, "#210B15");
+  gradient.addColorStop(0.45, "#2D111E");
+  gradient.addColorStop(1, "#0A0406");
   context.fillStyle = gradient;
   context.fillRect(0, 0, 64, 512);
   const texture = new THREE.CanvasTexture(element);
@@ -286,7 +286,7 @@ function resize() {
   camera.fov = narrow ? 48 : 35;
   baseY = narrow ? 2.7 : 2.4;
   rings.position.set(0, baseY, 0);
-  rings.scale.setScalar(narrow ? 0.86 : 0.7);
+  rings.scale.setScalar(narrow ? 0.76 : 0.62);
   camera.updateProjectionMatrix();
 }
 resize();
